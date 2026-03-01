@@ -279,3 +279,5 @@ jupyter>=1.0
 * Filtros aplicados antes de agregações para reduzir cardinalidade.
 * Uso de CTEs e window functions quando apropriado (especialmente no Desafio 4).
 
+```
+```
