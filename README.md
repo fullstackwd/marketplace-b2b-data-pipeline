@@ -8,17 +8,18 @@ Repositório com a resolução do **Desafio Técnico - Engenharia de Dados** (ma
 
 ## Estrutura do projeto
 
-
+```md
 .
 ├── notebooks/
-│ ├── 01_pipeline_preparacao_dados.ipynb
-│ └── 02_resolucao_desafios_sql.ipynb
+│   ├── 01_pipeline_preparacao_dados.ipynb
+│   └── 02_resolucao_desafios_sql.ipynb
 ├── data/
-│ ├── raw/ # (opcional) CSVs de entrada
-│ └── processed/
-│ └── pipeline.db # gerado pelo pipeline
+│   ├── raw/                  # (opcional) CSVs de entrada
+│   └── processed/
+│       └── pipeline.db       # gerado pelo pipeline
 ├── requirements.txt
 └── README.md
+```
 
 
 > Observação: os notebooks suportam **fallback para `/mnt/data`** (útil em ambiente de avaliação/Colab).
