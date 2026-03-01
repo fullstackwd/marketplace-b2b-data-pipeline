@@ -6,27 +6,44 @@ Repositório com a resolução do **Desafio Técnico - Engenharia de Dados** (ma
 ## Fluxograma — Pipeline de preparação de dados
 
 ```mermaid
+## Diagrama — Pipeline de preparação de dados (completo)
+
+```mermaid
 flowchart TD
-    A([Início]) --> B[Definir caminhos de entrada/saída<br/>data/raw → data/processed]
-    B --> C[Carregar CSVs<br/>buyers, sellers, products, orders, order_items, payments]
-    C --> D{Arquivos existem<br/>e têm colunas esperadas?}
-    D -- Não --> E[Logar erro + interromper execução]
-    D -- Sim --> F[Padronizar schema/tipos<br/>IDs como string, datas parseadas, valores numéricos]
-    F --> G[Limpeza básica<br/>trim, normalização, nulos, duplicados]
-    G --> H{Validações de qualidade}
-    H --> H1[Checar chaves<br/>order_id, product_id, seller_id, buyer_id]
-    H --> H2[Checar joins<br/>orders↔order_items, order_items↔products, orders↔payments]
-    H --> H3[Checar valores inválidos<br/>negativos, nulos críticos]
-    H1 --> I{Falhou validação?}
-    H2 --> I
-    H3 --> I
-    I -- Sim --> J[Registrar logs/relatório<br/>outputs/logs e outputs/tables]
-    J --> K[Aplicar regras de correção (quando possível)<br/>ou marcar registros problemáticos]
-    I -- Não --> L[Montar tabelas finais (camada tratada)]
-    K --> L
-    L --> M[Persistir em SQLite<br/>data/processed/pipeline.db]
-    M --> N[Salvar artefatos opcionais<br/>tabelas/figuras em outputs/]
-    N --> O([Fim])
+  A([Início]) --> B["Configuração\n- definir diretórios (data/raw, data/processed, outputs)\n- definir parâmetros (ref_date, regras de status)\n- inicializar logger"]
+  
+  B --> C{"Checagem de entrada\nCSVs existem?"}
+  C -- "Não" --> C1["Falha\nlogar arquivos ausentes e encerrar"] --> Z([Fim])
+  C -- "Sim" --> D["Leitura dos CSVs\nbuyers, sellers, products, orders,\norder_items, payments"]
+
+  D --> E{"Validação de schema\ncolunas obrigatórias presentes?"}
+  E -- "Não" --> E1["Falha\nlogar colunas faltantes e encerrar"] --> Z
+  E -- "Sim" --> F["Padronização de tipos\n- IDs como string\n- datas parseadas\n- valores numéricos (preço, qty, totals)"]
+
+  F --> G["Limpeza básica\n- trim/normalização\n- tratar nulos\n- remover/identificar duplicados"]
+  
+  G --> H["Validações de qualidade\n(regras e consistência)"]
+  H --> H1["Chaves e unicidade\n- checar PKs esperadas\n- duplicidade por id"]
+  H --> H2["Integridade referencial\n- orders ↔ order_items (order_id)\n- order_items ↔ products (product_id)\n- orders ↔ buyers (buyer_id)\n- order_items ↔ sellers (seller_id)\n- orders ↔ payments (order_id)"]
+  H --> H3["Regras de domínio\n- qty > 0\n- unit_price >= 0\n- totals >= 0\n- status dentro do esperado"]
+  H --> H4["Sanity checks\n- pedidos sem itens?\n- itens sem pedido?\n- pagamentos inconsistentes?"]
+
+  H1 --> I{"Problemas encontrados?"}
+  H2 --> I
+  H3 --> I
+  H4 --> I
+
+  I -- "Sim" --> J["Gerar relatórios\n- outputs/logs\n- outputs/tables (linhas com erro e contagens)"]
+  J --> K["Tratamento\n- corrigir quando possível (ex.: casting)\n- senão: marcar/segregar registros problemáticos"]
+  I -- "Não" --> L["Dados aprovados\nseguir para persistência"]
+
+  K --> L
+
+  L --> M["Preparar camada tratada\n- tabelas prontas para consulta\n- normalização final de campos"]
+  M --> N["Persistir em SQLite\n- criar/atualizar pipeline.db\n- escrever tabelas (append/replace conforme estratégia)"]
+  
+  N --> O["Artefatos opcionais\n- outputs/figures\n- outputs/tables\n- resumo de execução (contagens, ref_date)"]
+  O --> Z([Fim])
 ```
 
 - **Resolução dos desafios SQL (1 a 4)** dentro do notebook, com queries e explicações (incluindo raciocínio do Desafio 3)
