@@ -1,4 +1,3 @@
-````md
 # Teste Técnico – Engenheiro(a) de Dados (SQL + Pipeline)
 
 Repositório com a resolução do **Desafio Técnico - Engenharia de Dados** (marketplace B2B), contendo:
@@ -9,7 +8,7 @@ Repositório com a resolução do **Desafio Técnico - Engenharia de Dados** (ma
 
 ## Estrutura do projeto
 
-```text
+````md
 .
 ├── notebooks/
 │   ├── 01_pipeline_preparacao_dados.ipynb
@@ -280,4 +279,4 @@ jupyter>=1.0
 * Uso de CTEs e window functions quando apropriado (especialmente no Desafio 4).
 
 ```
-```
+
