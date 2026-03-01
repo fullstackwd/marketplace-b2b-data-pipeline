@@ -12,11 +12,21 @@ Repositório com a resolução do **Desafio Técnico - Engenharia de Dados** (ma
 .
 ├── notebooks/
 │   ├── 01_pipeline_preparacao_dados.ipynb
-│   └── 02_resolucao_desafios_sql.ipynb
+│   ├── 02_resolucao_desafios_sql.ipynb
+│   └── .ipynb_checkpoints/
 ├── data/
-│   ├── raw/                  # (opcional) CSVs de entrada
+│   ├── raw/
+│   │   ├── buyers.csv
+│   │   ├── orders.csv
+│   │   ├── order_items.csv
+│   │   ├── payments.csv
+│   │   ├── products.csv
+│   │   └── sellers.csv
 │   └── processed/
-│       └── pipeline.db       # gerado pelo pipeline
+├── outputs/
+│   ├── figures/
+│   ├── logs/
+│   └── tables/
 ├── requirements.txt
 └── README.md
 ```

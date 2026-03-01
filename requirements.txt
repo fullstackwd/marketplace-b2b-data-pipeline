@@ -1,6 +1,15 @@
-pandas
-numpy
-matplotlib
-sqlalchemy
-ipython
-jupyter
+# Ambiente recomendado: Python >= 3.10
+
+# Manipulação de dados
+pandas>=2.0
+numpy>=1.24
+
+# Visualização
+matplotlib>=3.7
+
+# Conexão / inspeção de DB (usado no notebook)
+SQLAlchemy>=2.0
+
+# Execução e recursos de notebook (há import direto de IPython)
+ipython>=8.0
+jupyter>=1.0
