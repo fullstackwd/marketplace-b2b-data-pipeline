@@ -2,6 +2,33 @@
 
 Repositório com a resolução do **Desafio Técnico - Engenharia de Dados** (marketplace B2B), contendo:
 - **Pipeline de preparação de dados** (leitura dos CSVs, validações e persistência em SQLite)
+
+## Fluxograma — Pipeline de preparação de dados
+
+```mermaid
+flowchart TD
+    A([Início]) --> B[Definir caminhos de entrada/saída<br/>data/raw → data/processed]
+    B --> C[Carregar CSVs<br/>buyers, sellers, products, orders, order_items, payments]
+    C --> D{Arquivos existem<br/>e têm colunas esperadas?}
+    D -- Não --> E[Logar erro + interromper execução]
+    D -- Sim --> F[Padronizar schema/tipos<br/>IDs como string, datas parseadas, valores numéricos]
+    F --> G[Limpeza básica<br/>trim, normalização, nulos, duplicados]
+    G --> H{Validações de qualidade}
+    H --> H1[Checar chaves<br/>order_id, product_id, seller_id, buyer_id]
+    H --> H2[Checar joins<br/>orders↔order_items, order_items↔products, orders↔payments]
+    H --> H3[Checar valores inválidos<br/>negativos, nulos críticos]
+    H1 --> I{Falhou validação?}
+    H2 --> I
+    H3 --> I
+    I -- Sim --> J[Registrar logs/relatório<br/>outputs/logs e outputs/tables]
+    J --> K[Aplicar regras de correção (quando possível)<br/>ou marcar registros problemáticos]
+    I -- Não --> L[Montar tabelas finais (camada tratada)]
+    K --> L
+    L --> M[Persistir em SQLite<br/>data/processed/pipeline.db]
+    M --> N[Salvar artefatos opcionais<br/>tabelas/figuras em outputs/]
+    N --> O([Fim])
+```
+
 - **Resolução dos desafios SQL (1 a 4)** dentro do notebook, com queries e explicações (incluindo raciocínio do Desafio 3)
 
 ---
