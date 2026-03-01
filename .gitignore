@@ -1,9 +1,17 @@
-.venv/
+# Python
 __pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+
+# Jupyter
 .ipynb_checkpoints/
+
+# Outputs gerados pelo pipeline
+outputs/**
+!outputs/.gitkeep
+
+# SO/Editor
 .DS_Store
-*.db
-data/raw/*
-data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
+.vscode/
