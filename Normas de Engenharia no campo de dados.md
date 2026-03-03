@@ -1,0 +1,50 @@
+✅ **ISO × Nome oficial × Domínio × Função × Etapa do ciclo × Impacto × Justificativa × Exemplos de uso**
+
+---
+
+## 📊 Matriz unificada completa (ISO × Função × Impacto)
+
+**Legenda Impacto:** 🔴 Crítico | 🟠 Alto | 🟡 Médio | 🔵 Específico
+
+| Norma ISO     | Nome oficial (resumo)                       | Domínio           | Função técnica               | Etapa do ciclo de vida      | Impacto | Justificativa técnica                                                      | Exemplos práticos em Eng. de Dados                       |
+| ------------- | ------------------------------------------- | ----------------- | ---------------------------- | --------------------------- | ------- | -------------------------------------------------------------------------- | -------------------------------------------------------- |
+| ISO 8601      | Date and time format                        | Representação     | Padronizar datas/horas       | Coleta / Integração         | 🔴      | Base para consistência temporal em sistemas distribuídos                   | timestamps em logs, partições por data, APIs             |
+| ISO/IEC 10646 | Universal Character Set (UCS)               | Representação     | Codificação universal        | Representação               | 🔴      | Evita corrupção/inconsistência de texto multi-idioma                       | UTF-8 em DW/Lake, ingestion de fontes globais            |
+| ISO/IEC 8859  | Character encodings (Latin-*)               | Representação     | Codificação legada           | Representação               | 🟡      | Relevante para integração com sistemas antigos                             | ingestão de ERPs legados, conversão para UTF-8           |
+| ISO/IEC 11404 | General Purpose Datatypes                   | Modelagem         | Tipos gerais de dados        | Modelagem                   | 🟡      | Ajuda a formalizar semântica de tipos                                      | dicionário de tipos, mapeamento de schemas               |
+| ISO/IEC 11179 | Metadata Registry                           | Metadados         | Registro formal de metadados | Governança / Catálogo       | 🔴      | Fundamenta catálogo, semântica, data dictionary e reuso                    | glossário, definição de atributos, domínio de valores    |
+| ISO 19115     | Geographic metadata                         | Metadados         | Metadados geoespaciais       | Integração / Catálogo       | 🟡      | Especializado para datasets espaciais                                      | GIS, dados de rotas, mapas, sensoriamento remoto         |
+| ISO/IEC 19505 | UML                                         | Modelagem         | Modelagem estrutural         | Arquitetura / Modelagem     | 🟡      | Ajuda a documentar modelos e sistemas                                      | diagramas entidade-relacionamento via UML, documentação  |
+| ISO/IEC 9075  | SQL                                         | Banco de Dados    | Padrão SQL                   | Armazenamento / Consulta    | 🔴      | Interoperabilidade e base de DW/OLTP/OLAP                                  | queries analíticas, views, constraints, window functions |
+| ISO/IEC 13249 | SQL Multimedia & Application Packages       | Banco de Dados    | Extensões SQL                | Armazenamento / Consulta    | 🟡      | Útil em contextos específicos (multimídia/espacial etc.)                   | tipos especiais, extensões para domínios                 |
+| ISO 8000      | Data Quality                                | Qualidade         | Qualidade de dados (core)    | Qualidade / Governança      | 🔴      | Define critérios formais de qualidade e interoperabilidade de dados mestre | MDM, padronização de cadastros, validação de atributos   |
+| ISO/IEC 25012 | Data Quality Model (SQuaRE)                 | Qualidade         | Modelo de qualidade          | Qualidade / Avaliação       | 🟠      | Estrutura dimensões inerentes e dependentes do sistema                     | scorecards de DQ, critérios por dataset                  |
+| ISO/IEC 25024 | Measurement of Data Quality                 | Qualidade         | Métricas de qualidade        | Monitoramento               | 🟠      | Operacionaliza medição e indicadores                                       | métricas automáticas, alertas de completude/acurácia     |
+| ISO/IEC 27001 | ISMS (SGSI)                                 | Segurança         | Gestão de segurança          | Segurança / Operação        | 🔴      | Base de controles, auditoria e gestão de risco                             | políticas, controles, auditoria, classificação de dados  |
+| ISO/IEC 27002 | Security controls                           | Segurança         | Catálogo de controles        | Segurança / Operação        | 🔴      | Traduz SGSI em controles aplicáveis                                        | IAM, criptografia, logging, segregação de ambientes      |
+| ISO/IEC 27005 | Information security risk management        | Segurança         | Gestão de riscos             | Segurança / Governança      | 🟠      | Essencial para priorizar controles e ameaças                               | risk register, análise de impacto, tratamento de risco   |
+| ISO/IEC 27701 | Privacy Information Management (PIMS)       | Privacidade       | Privacidade/PII              | Compliance / Governança     | 🔴      | Base para governança de dados pessoais (LGPD/GDPR)                         | minimização, base legal, consentimento, retenção         |
+| ISO/IEC 27017 | Cloud security                              | Cloud             | Controles para nuvem         | Segurança / Cloud           | 🟠      | Especializa segurança em ambiente cloud                                    | responsabilidade compartilhada, controles cloud          |
+| ISO/IEC 27018 | Protection of PII in public clouds          | Cloud/Privacidade | PII em nuvem pública         | Compliance / Cloud          | 🟠      | Direciona proteção de PII em cloud pública                                 | contratos cloud, proteção e tratamento de PII            |
+| ISO/IEC 20000 | IT Service Management                       | Operações         | Gestão de serviços           | Operação (DataOps)          | 🟠      | Ajuda a estruturar incidentes, mudanças, SLAs                              | runbooks, gestão de incidentes de pipeline, SLA de dados |
+| ISO 22301     | Business Continuity Management              | Resiliência       | Continuidade de negócios     | Resiliência                 | 🟠      | Base para DR/BCP da plataforma de dados                                    | RTO/RPO, backups, planos de contingência                 |
+| ISO/IEC 38500 | IT Governance                               | Governança        | Governança de TI             | Estratégia                  | 🟠      | Direciona governança e accountability em TI/dados                          | papéis, responsabilidades, alinhamento estratégico       |
+| ISO 38505-1   | Governance of data (part 1)                 | Governança        | Governança de dados          | Estratégia / Governança     | 🟠      | Formaliza princípios, papéis e prestação de contas em dados                | ownership/stewardship, políticas, comitês de dados       |
+| ISO/IEC 20546 | Big Data vocabulary                         | Big Data          | Vocabulário Big Data         | Conceitual                  | 🟡      | Padroniza linguagem e entendimento                                         | taxonomia corporativa, comunicação técnica               |
+| ISO/IEC 20547 | Big Data reference architecture             | Big Data          | Arquitetura de referência    | Arquitetura / Processamento | 🟠      | Ajuda a organizar componentes de ecossistemas Big Data                     | lake/lakehouse, ingestão, processamento, consumo         |
+| ISO/IEC 22989 | AI concepts & terminology                   | IA                | Conceitos/termos IA          | Conceitual                  | 🟡      | Padroniza terminologia e conceitos de IA                                   | glossário de IA, governança de iniciativas de ML         |
+| ISO/IEC 23053 | AI framework using ML                       | IA                | Framework IA/ML              | Analytics / ML              | 🟠      | Relaciona dados, treino, validação e operação                              | pipelines de treino, feature store, MLOps                |
+| ISO/IEC 23894 | AI risk management                          | IA                | Risco em IA                  | Governança analítica        | 🟠      | Estrutura risco e controles para modelos                                   | vieses, robustez, rastreabilidade, governança de modelo  |
+| ISO 9735      | EDIFACT                                     | Integração        | EDI comercial                | Integração B2B              | 🟡      | Forte em comércio/logística, mas não universal                             | integração B2B, mensagens padrão em supply chain         |
+| ISO 10303     | STEP (Product data)                         | Engenharia        | Troca de dados CAD           | Integração industrial       | 🔵      | Setorial (engenharia/manufatura)                                           | integração CAD/PLM, manufatura, engenharia colaborativa  |
+| ISO 15926     | Industrial automation systems & integration | Indústria         | Dados de plantas/ativos      | IoT/Industrial              | 🔵      | Muito forte em óleo e gás/processos                                        | ativos industriais, interoperabilidade, digital twin     |
+| ISO 23247     | Digital Twin framework                      | Indústria 4.0     | Framework Digital Twin       | Sistemas ciberfísicos       | 🔵      | Específico para digital twin industrial                                    | gêmeo digital, IoT industrial, manutenção preditiva      |
+
+Critérios usados para o **Nível de Impacto**:
+
+* 🔴 **Crítico** → Fundamental para arquitetura e operação
+* 🟠 **Alto** → Estrutural para governança e confiabilidade
+* 🟡 **Médio** → Importante para especialização ou contexto específico
+* 🔵 **Específico** → Aplicação setorial ou nichada
+
+
